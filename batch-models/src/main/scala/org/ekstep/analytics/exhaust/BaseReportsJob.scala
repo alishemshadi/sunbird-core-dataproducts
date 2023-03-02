@@ -57,6 +57,9 @@ trait BaseReportsJob {
         spark.sparkContext.hadoopConfiguration.set("fs.gs.auth.service.account.email", AppConf.getConfig(storageKey))
         spark.sparkContext.hadoopConfiguration.set("fs.gs.auth.service.account.private.key", AppConf.getConfig(storageSecret))
         spark.sparkContext.hadoopConfiguration.set("fs.gs.auth.service.account.private.key.id", AppConf.getConfig("gcloud_private_secret_id"))
+      case "s3" =>
+        spark.sparkContext.hadoopConfiguration.set("fs.oci.ociAccessKeyId", AppConf.getConfig(storageKey));
+        spark.sparkContext.hadoopConfiguration.set("fs.oci.ociSecretAccessKey", AppConf.getConfig(storageSecret));
       case _ =>
 
     }

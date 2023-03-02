@@ -32,6 +32,12 @@ trait BaseDruidQueryProcessor {
       case "azure" =>
         sc.hadoopConfiguration.set("fs.azure", "org.apache.hadoop.fs.azure.NativeAzureFileSystem")
         sc.hadoopConfiguration.set("fs.azure.account.key." + AppConf.getConfig(accountKey.getOrElse("azure_storage_key")) + ".blob.core.windows.net", AppConf.getConfig(accountSecret.getOrElse("azure_storage_secret")))
+      case "oci" =>
+        sc.hadoopConfiguration.set("fs.oci.ociAccessKeyId", AppConf.getConfig(accountKey.getOrElse("oci_storage_key")));
+        sc.hadoopConfiguration.set("fs.oci.ociSecretAccessKey", AppConf.getConfig(accountSecret.getOrElse("oci_storage_secret")));
+      case "oci" =>
+        sc.hadoopConfiguration.set("fs.oci.ociAccessKeyId", AppConf.getConfig(accountKey.getOrElse("oci_storage_key")));
+        sc.hadoopConfiguration.set("fs.oci.ociSecretAccessKey", AppConf.getConfig(accountSecret.getOrElse("oci_storage_secret")));
       case _ =>
       // Do nothing
     }

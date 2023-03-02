@@ -634,7 +634,7 @@ class TestDruidQueryProcessingModel extends SparkSpec(null) with Matchers with B
     val strConfig1 = JSONUtils.serialize(reportConfig1)
     val modelParams1 = Map("exhaustQuery" -> true.asInstanceOf[AnyRef],
       "reportConfig" -> JSONUtils.deserialize[Map[String, AnyRef]](strConfig1),
-      "store" -> "azure", "container" -> "test-container", "filePath" -> "src/test/resources/druid-reports/", "key" -> "exhaust-reports/")
+      "store" -> "azure", "container" -> "test-container", "filePath" -> "src/test/resources/druid-reports/", "key" -> "exhaust-reports/") // this needs to be updated
     the[AzureException] thrownBy {
       DruidQueryProcessingModel.execute(sc.emptyRDD, Option(modelParams1)).collect()
     }

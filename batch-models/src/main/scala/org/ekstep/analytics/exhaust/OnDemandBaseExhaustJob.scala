@@ -186,6 +186,8 @@ trait OnDemandBaseExhaustJob {
       case "azure" =>
         CommonUtil.getAzureFile(storageConfig.container, "", storageConfig.accountKey.getOrElse("azure_storage_key"))
       // $COVERAGE-ON$ for case: local
+      case "oci" =>
+        CommonUtil.getOCIFile(storageConfig.container, "");
       case _ =>
         storageConfig.fileName
     }

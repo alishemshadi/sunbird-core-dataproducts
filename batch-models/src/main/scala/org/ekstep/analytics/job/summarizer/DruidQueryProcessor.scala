@@ -35,8 +35,8 @@ object DruidQueryProcessor extends optional.Application with IJob {
         JobLogger.start(jobName + " Started executing")
         implicit val sparkContext: SparkContext = sc.getOrElse(CommonUtil.getSparkContext(200, "DruidReports"))
         implicit val frameworkContext: FrameworkContext = fc.getOrElse({
-          val storageKey = "azure_storage_key"
-          val storageSecret = "azure_storage_secret"
+          val storageKey = "oci_storage_key"
+          val storageSecret = "oci_storage_secret"
           CommonUtil.getFrameworkContext(Option(Array((AppConf.getConfig("cloud_storage_type"), storageKey, storageSecret))))
         })
         implicit val sqlContext: SQLContext = new SQLContext(sparkContext)
